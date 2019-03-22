@@ -208,9 +208,8 @@ class HighchartsBackend
         Object.assign(options, overrides)
     }
 
-    plot(data) {
-        const pname = data['packet']
-        let delta = data['data']
+    plot(delta) {
+        const pname = delta['packet']
         const names = this._plot._packets[pname]
         if (!names) return
 

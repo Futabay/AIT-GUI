@@ -730,13 +730,12 @@ def handle():
                         if v.uid == uid:
                             pkt_defn = v
                             break
-
-                    json_pkt = ait.core.tlm.Packet(pkt_defn, data=data).toJSON()
-                    delta = get_packet_delta(pkt_defn, json_pkt)
+                    else:
+                        continue
 
                     wsock.send(json.dumps({
                         'packet': pkt_defn.name,
-                        'data': delta
+                        'data': ait.core.tlm.Packet(pkt_defn, data=data).toJSON()
                     }))
 
                 except IndexError:
